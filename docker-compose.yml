@@ -1,0 +1,12 @@
+services:
+  compiler:
+    build: .
+    container_name: python-compiler
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./templates:/app/templates
+      - ./static:/app/static
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1

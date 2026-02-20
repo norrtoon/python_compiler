@@ -1,0 +1,126 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Compiler</title>
+    
+        <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <span class="logo-text">Compiler</span>
+            <div class="status-badge">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Готов к запуску</span>
+            </div>
+        </header>
+
+        <div class="editor-panel">
+            <div class="editor-header">
+                <div class="file-info">
+                    <span class="file-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                        </svg>
+                    </span>
+                    <span class="file-name">main.py</span>
+                </div>
+                <div class="file-actions">
+                    <div class="dropdown-wrapper">
+                        <button class="action-btn" id="menuToggle" aria-label="Меню">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <circle cx="12" cy="5" r="2"/>
+                                <circle cx="12" cy="12" r="2"/>
+                                <circle cx="12" cy="19" r="2"/>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <button class="dropdown-item" id="downloadBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                Скачать .py
+                            </button>
+                            <button class="dropdown-item" id="copyBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                </svg>
+                                Копировать код
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" id="clearBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3,6 5,6 21,6"/>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                </svg>
+                                Очистить
+                            </button>
+                            <button class="dropdown-item" id="exampleBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12,2 2,7 12,12 22,7"/>
+                                    <polyline points="2,17 12,22 22,17"/>
+                                    <polyline points="2,12 12,17 22,12"/>
+                                </svg>
+                                Загрузить пример
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="editor-wrapper">
+                    <div class="line-numbers" id="lineNumbers"><span>1</span></div>
+                    <textarea id="code" placeholder="# Начните писать Python код...">name = input("Как вас зовут? ")
+print(f"Привет, {name}!")
+
+# Пример цикла
+for i in range(1, 4):
+    print(f"Итерация {i}")</textarea>
+                </div>
+        </div>
+
+        <button class="run-btn" id="runBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6,4 20,12 6,20"/>
+            </svg>
+            <span id="btnText">Запустить код</span>
+        </button>
+
+        <div class="output-panel" id="outputPanel">
+            <div class="output-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="4,17 10,11 4,5"/>
+                    <line x1="12" y1="19" x2="20" y2="19"/>
+                </svg>
+                <span class="output-title">Вывод</span>
+            </div>
+            <div id="output"></div>
+            <div class="input-row hidden" id="input-container">
+                <span class="input-prompt">></span>
+                <input type="text" id="inputBox" placeholder="Введите данные..." disabled>
+            </div>
+        </div>
+
+        <div class="shortcut-hint">
+            <kbd>Ctrl + Enter</kbd>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20,6 9,17 4,12"/>
+        </svg>
+        <span id="toastText">Сохранено</span>
+    </div>
+
+    
+    
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>

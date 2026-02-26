@@ -1,4 +1,4 @@
-// === Инициализация элементов ===
+// Инициализация элементов
         const socket = io();
         const codeArea = document.getElementById('code');
         const runBtn = document.getElementById('runBtn');
@@ -14,7 +14,7 @@
         const toast = document.getElementById('toast');
         const toastText = document.getElementById('toastText');
 
-        // === Dropdown Menu Logic ===
+        // Dropdown Menu Logic
         menuToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             dropdownMenu.classList.toggle('open');
@@ -26,7 +26,7 @@
             }
         });
 
-        // === Download Function ===
+        // Download Function
         document.getElementById('downloadBtn').addEventListener('click', function() {
             const code = codeArea.value;
             const blob = new Blob([code], { type: 'text/x-python' });
@@ -44,7 +44,7 @@
             showToast('Файл скачан');
         });
 
-        // === Copy Function ===
+        // Copy Function
         document.getElementById('copyBtn').addEventListener('click', function() {
             navigator.clipboard.writeText(codeArea.value).then(function() {
                 dropdownMenu.classList.remove('open');
@@ -52,14 +52,14 @@
             });
         });
 
-        // === Clear Function ===
+        // Clear Function
         document.getElementById('clearBtn').addEventListener('click', function() {
             codeArea.value = '';
             dropdownMenu.classList.remove('open');
             codeArea.focus();
         });
 
-        // === Load Example ===
+        // Load Example
         document.getElementById('exampleBtn').addEventListener('click', function() {
             codeArea.value = `# Пример: калькулятор
 def calculator():
@@ -86,7 +86,7 @@ calculator()`;
             showToast('Пример загружен');
         });
 
-        // === Toast Function ===
+        // Toast Function
         function showToast(message) {
             toastText.textContent = message;
             toast.classList.add('show');
@@ -95,7 +95,7 @@ calculator()`;
             }, 2500);
         }
 
-        // === Run Code ===
+        // Run Code
         function runCode() {
             const code = codeArea.value;
             
@@ -120,7 +120,7 @@ calculator()`;
 
         runBtn.addEventListener('click', runCode);
 
-        // === Socket Events ===
+        // Socket Events 
         socket.on('output', function(msg) {
             outputDiv.textContent += msg.data + '\n';
             
@@ -180,14 +180,14 @@ calculator()`;
             statusText.textContent = 'Нет соединения';
         });
 
-        // === Keyboard Shortcut ===
+        // Keyboard Shortcut
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.key === 'Enter' && !runBtn.disabled) {
                 runCode();
             }
         });
 
-// === Нумерация строк ===
+// Нумерация строк
 function updateLineNumbers() {
     const lines = codeArea.value.split('\n').length;
     const numbers = Array.from({length: lines}, (_, i) => `<span>${i + 1}</span>`).join('');

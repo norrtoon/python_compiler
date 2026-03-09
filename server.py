@@ -117,4 +117,7 @@ def handle_input(data):
             emit('output', {'data': f'Input Error: {str(e)}'})
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+    port = 5000
+    print(f' * http://localhost:{port}')
+    socketio.run(app, host='0.0.0.0', port=port, debug=True, log_output=False)
+

@@ -10,7 +10,9 @@
     <div class="container">
         <header class="header">
             <span class="logo-text">Compiler</span>
-            <div class="status-badge">
+            <div class="status-badge"> 
+                <span>Отступ:</span>
+                <span id="indentLevel">0</span>
                 <span class="status-dot" id="statusDot"></span>
                 <span id="statusText">Готов к запуску</span>
             </div>
@@ -74,7 +76,9 @@
             </div>
             <div class="editor-wrapper">
                     <div class="line-numbers" id="lineNumbers"><span>1</span></div>
-                    <textarea id="code" placeholder="# Начните писать Python код...">name = input("Как вас зовут? ")
+                    <div class="code-container">
+        <pre class="code-highlight" id="highlighted" aria-hidden="true"></pre>
+        <textarea id="code" spellcheck="false" placeholder="# Начните писать Python код...">name = input("Как вас зовут? ")
 print(f"Привет, {name}!")
 
 # Пример цикла
@@ -106,7 +110,9 @@ for i in range(1, 4):
         </div>
 
         <div class="shortcut-hint">
-            <kbd>Ctrl + Enter</kbd>
+            <kbd>Ctrl + Enter</kbd> запуск
+            <kbd>Tab</kbd> отступ
+            <kbd>Shift + Tab</kbd> убрать
         </div>
     </div>
 
